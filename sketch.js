@@ -1,125 +1,218 @@
 let player;
-let platforms = [];
-let gravity = 0.8;
-let jumpStrength = -1;
+let gravity = 0.5;  // Gravity force
+let jumpStrength = -5;  // How strong the jump is
+let isJumping = false;  // Whether the player is in the air
+let floorPos_y;  
+
+let isRight = false;
+let isLeft = false;
+
+//whether the level is won
+let gameWon = false;
+
+//Levels (1-3)
+let gameLevel = 3;
+
+let fWidth = 50;  // Width of each frame
+let fHeight = 50; // Height of each frame
+
+//Fat gauge bar 
+let maxFG = 100;
+let currentFG = 0;
 
 function setup() {
-  createCanvas(800, 400);
-
-  // Create a player object
-  player = new Player(width / 2, height - 50);
-
-  // Create some platforms
-  platforms.push(new Platform(0, height - 20, width, 20));  // Ground
-  platforms.push(new Platform(150, 300, 200, 20));           // Platform 1
-  platforms.push(new Platform(400, 250, 200, 20));           // Platform 2
-  platforms.push(new Platform(650, 200, 200, 20));           // Platform 3
+    createCanvas(1024, 700);
+    floorPos_y = (height * 3) / 4;  // Set ground height (bottom of the screen)
+  
+    // Initialize the player object
+    player = new Player(width / 2, floorPos_y);
+    
 }
 
 function draw() {
-  background(220);
+    drawSky();
+    
+    drawStars();
 
-  // Apply gravity to the player
-  player.applyGravity();
+    drawGround();
 
-  // Move the player
-  player.update();
-  player.display();
+    moon = 
+    {
+    x: 150,
+    y: 120,
+    size: 40
+    };
+    drawMoon();
 
-  // Display platforms
-  for (let plat of platforms) {
-    plat.display();
-    // Check for collisions with platforms
-    player.checkCollision(plat);
-  }
+    drawClouds();
+
+    //outline for fat gauge bar
+    fill(100, 91, 71);
+    rect(33,23, 255,30)
+
+    //empty fat gauge bar
+    fill(238, 224, 203);  // Gray color for the background
+    rect(30, 20, 250, 25);
+
+    //draw the filled fat gauge bar
+    let fgRatio = currentFG / maxFG;
+    let fillWidth = fgRatio * 250;
+
+    fill(219,80, 74);
+    rect(30, 20, fillWidth, 25);
+
+
+    //test
+    //if (currentFG < maxFG) {
+     //   currentFG += 0.1; // Gain XP gradually
+    //}
+
+    // Apply gravity and check for jumping
+    if (player.y < floorPos_y) {
+        player.velocity += gravity;  // Apply gravity if not on the ground
+    } else {
+        player.velocity = 0;  // Stop the player if they hit the ground
+        player.y = floorPos_y;  // Keep player on the ground
+        isJumping = false;  // The player is on the ground, not jumping anymore
+    }
+
+    // Move the fat player with keyboard input
+    if (keyIsDown(LEFT_ARROW)) {
+        if (gameLevel == 1){
+            player.x -= 1.5;
+        }
+        if (gameLevel == 2){
+            player.x -= 2;
+        }
+        if (gameLevel == 3){
+            player.x -= 3;
+        }
+        
+        isLeft = true;
+        if (currentFG < maxFG && isLeft == true){
+            currentFG += 0.1
+        }
+    }
+    else{
+        isLeft = false;
+    }
+    if (keyIsDown(RIGHT_ARROW)) {
+        if (gameLevel == 1){
+            player.x += 1.5;
+        }
+        if (gameLevel == 2){
+            player.x += 2;
+        }
+        if (gameLevel == 3){
+            player.x += 3;
+        }
+        isRight = true;
+        if (currentFG < maxFG && isRight == true){
+            currentFG += 0.1
+        }
+    }
+    else{
+        isRight = false;
+    }
+
+    // Jumping: If the spacebar is pressed and the player is on the ground
+    if (keyIsDown(32) && !isJumping) {  // Spacebar key code is 32
+        player.velocity = jumpStrength;
+        isJumping = true;
+    }
+
+    // Update and display the player
+    player.update();
+    player.show();
+
+    if (gameWon){
+        if (gameLevel < 3){
+            nxtLevelScreen();
+        }
+
+        else{
+            endGameScreen();
+        }
+    }
+    else {
+        playGame();
+    }
 }
 
-// Player class
 class Player {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.width = 40;
-    this.height = 40;
-    this.xSpeed = 0;
-    this.ySpeed = 0;
-    this.isJumping = false;
+    this.width = fWidth;
+    this.height = fHeight;
+    this.velocity = 0;  // Vertical velocity
   }
 
+  // Update player position
   update() {
-    // Horizontal movement (left and right)
-    if (keyIsDown(LEFT_ARROW)) {
-      this.xSpeed = -5;
-    } else if (keyIsDown(RIGHT_ARROW)) {
-      this.xSpeed = 5;
-    } else {
-      this.xSpeed = 0;
-    }
+    this.y += this.velocity;
 
-    // Move the player based on speed
-    this.x += this.xSpeed;
-
-    // Prevent the player from going off screen horizontally
     this.x = constrain(this.x, 0, width - this.width);
 
-    // Apply gravity and vertical movement
-    this.y += this.ySpeed;
-    if (this.y + this.height > height) {
-      this.y = height - this.height;
-      this.ySpeed = 0;
-      this.isJumping = false;
+    this.y = constrain(this.y, 0, height - this.height);
     }
-  }
 
-  applyGravity() {
-    if (!this.isJumping) {
-      this.ySpeed += gravity;
+  // Show player as a circle
+  show() {
+    if (gameLevel == 1){
+        if (isJumping == true){
+            drawCharacterJump(this.x, this.y);
+        }
+    
+        else if (isRight == true){
+            drawCharacterRight(this.x, this.y);
+        }
+    
+        else if (isLeft == true){
+            drawCharacterLeft(this.x, this.y);
+        }
+    
+        else{
+            drawCharacterForward(this.x, this.y);
+        }
     }
-  }
-
-  jump() {
-    if (!this.isJumping) {
-      this.ySpeed = jumpStrength;
-      this.isJumping = true;
+    
+    if (gameLevel == 2){
+        jumpStrength = -7.5;
+        if (isJumping == true){
+            drawLevelTwoJump(this.x, this.y);
+        }
+    
+        else if (isRight == true){
+            drawLevelTwoRight(this.x, this.y);
+        }
+    
+        else if (isLeft == true){
+            drawLevelTwoLeft(this.x, this.y);
+        }
+    
+        else{
+            drawLevelTwoForward(this.x, this.y);
+        }
     }
-  }
 
-  checkCollision(platform) {
-    if (this.x + this.width > platform.x && this.x < platform.x + platform.width &&
-        this.y + this.height <= platform.y && this.y + this.height + this.ySpeed >= platform.y) {
-      // Colliding with platform
-      this.ySpeed = 0;
-      this.isJumping = false;
-      this.y = platform.y - this.height;  // Reset to just above the platform
+    if (gameLevel == 3){
+        jumpStrength = -10;
+        if (isJumping == true){
+            drawLevelThreeJump(this.x, this.y);
+        }
+    
+        else if (isRight == true){
+            drawLevelThreeRight(this.x, this.y);
+        }
+    
+        else if (isLeft == true){
+            drawLevelThreeLeft(this.x, this.y);
+        }
+    
+        else{
+            drawLevelThreeForward(this.x, this.y);
+        }
     }
-  }
-
-  display() {
-    fill(0, 255, 0);
-    noStroke();
-    rect(this.x, this.y, this.width, this.height);
-  }
-}
-
-// Platform class
-class Platform {
-  constructor(x, y, width, height) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-  }
-
-  display() {
-    fill(0, 0, 255);
-    noStroke();
-    rect(this.x, this.y, this.width, this.height);
-  }
-}
-
-// Key press handling for jumping
-function keyPressed() {
-  if (keyCode === UP_ARROW) {
-    player.jump();
   }
 }
