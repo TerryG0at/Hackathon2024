@@ -24,8 +24,10 @@ function endGameScreen(){
     textAlign(CENTER, CENTER);
     fill(255);
     text('Congrats on beating the game! Press Enter!', width / 2, height / 2 - 20);
-    fill(252,245,150);
-    text('New Character Unlocked!: Terry', width / 2, height / 2 + 20);
+    if (loopwon == 0){
+        fill(252,245,150);
+        text('New Character Unlocked!: Terry', width / 2, height / 2 + 20);
+    }
 
     if (keyIsPressed && keyCode === ENTER){
         gameWon = false;

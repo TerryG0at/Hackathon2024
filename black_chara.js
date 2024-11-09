@@ -1,4 +1,4 @@
-function drawDarkForward() {
+function drawDarkForward(gameChar_x, gameChar_y) {
   // Left Pant
   noStroke();
   fill(0);
@@ -62,7 +62,7 @@ function drawDarkForward() {
   rect(gameChar_x + 4, gameChar_y - 10, 20, 10);
 }
 
-function drawDarkLeft() {
+function drawDarkLeft(gameChar_x, gameChar_y) {
   // Left Pant
   noStroke();
   fill(0);
@@ -126,7 +126,7 @@ function drawDarkLeft() {
   rect(gameChar_x + 4, gameChar_y - 10, 20, 10);
 }
 
-function drawDarkRight() {
+function drawDarkRight(gameChar_x, gameChar_y) {
   // Left Pant
   noStroke();
   fill(0);
@@ -190,7 +190,7 @@ function drawDarkRight() {
   rect(gameChar_x + 4, gameChar_y - 10, 20, 10);
 }
 
-function drawDarkJump() {
+function drawDarkJump(gameChar_x, gameChar_y) {
   // Left Pant
   noStroke();
   fill(0);
@@ -256,7 +256,7 @@ function drawDarkJump() {
 
 // ----------------------------------------------------------------------------------------------
 
-function drawLevelTwoDarkForward() {
+function drawLevelTwoDarkForward(gameChar_x, gameChar_y) {
   // Left Pant
   noStroke();
   fill(0);
@@ -323,7 +323,7 @@ function drawLevelTwoDarkForward() {
   rect(gameChar_x + 4, gameChar_y - 10, 20, 10);
 }
 
-function drawLevelTwoDarkLeft() {
+function drawLevelTwoDarkLeft(gameChar_x, gameChar_y) {
   // Left Pant
   noStroke();
   fill(0);
@@ -390,7 +390,7 @@ function drawLevelTwoDarkLeft() {
   rect(gameChar_x + 4, gameChar_y - 10, 20, 10);
 }
 
-function drawLevelTwoDarkRight() {
+function drawLevelTwoDarkRight(gameChar_x, gameChar_y) {
   // Left Pant
   noStroke();
   fill(0);
@@ -457,7 +457,7 @@ function drawLevelTwoDarkRight() {
   rect(gameChar_x + 4, gameChar_y - 10, 20, 10);
 }
 
-function drawLevelTwoDarkJump() {
+function drawLevelTwoDarkJump(gameChar_x, gameChar_y) {
   // Left Pant
   noStroke();
   fill(0);
@@ -525,7 +525,7 @@ function drawLevelTwoDarkJump() {
 
 // ----------------------------------------------------------------------------------------------
 
-function drawLevelThreeDarkForward() {
+function drawLevelThreeDarkForward(gameChar_x, gameChar_y) {
   // Left Pant
   noStroke();
   fill(0);
@@ -604,7 +604,7 @@ function drawLevelThreeDarkForward() {
   rect(gameChar_x + 2, gameChar_y - 10, 20, 10);
 }
 
-function drawLevelThreeDarkLeft() {
+function drawLevelThreeDarkLeft(gameChar_x, gameChar_y) {
   // Left Pant
   noStroke();
   fill(0);
@@ -683,7 +683,7 @@ function drawLevelThreeDarkLeft() {
   rect(gameChar_x + 2, gameChar_y - 10, 20, 10);
 }
 
-function drawLevelThreeDarkRight() {
+function drawLevelThreeDarkRight(gameChar_x, gameChar_y) {
   // Left Pant
   noStroke();
   fill(0);
@@ -762,7 +762,7 @@ function drawLevelThreeDarkRight() {
   rect(gameChar_x + 2, gameChar_y - 10, 20, 10);
 }
 
-function drawLevelThreeDarkJump() {
+function drawLevelThreeDarkJump(gameChar_x, gameChar_y) {
   // Left Pant
   noStroke();
   fill(0);

@@ -46,4 +46,16 @@ function mScreen (){
 
     text("Lester", xOffset, yOffset + charHeight / 2 + 20);
     text("Press 2", xOffset, yOffset + charHeight / 2 + 100);
+
+    if (keyIsPressed && keyCode === 50){
+        gameLevel = 1;
+        currentFG = 0;
+        char = "white";
+    }
+
+    if (keyIsPressed && keyCode === 49){
+        gameLevel = 1;
+        currentFG = 0;
+        char = "black";
+    }
 }

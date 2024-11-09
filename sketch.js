@@ -6,6 +6,7 @@ let floorPos_y;
 
 //unlock Characters
 let loopwon = 0;
+let char = "white"
 
 //level 3 raindrops
 var raindrops = [];
@@ -252,57 +253,117 @@ class Player {
     show() {
         if (gameLevel == 1){
             if (isJumping == true){
-                drawCharacterJump(this.x, this.y);
+                if (char == 'white'){
+                    drawCharacterJump(this.x, this.y);
+                }
+                if (char == 'black'){
+                    drawDarkJump(this.x, this.y);
+                }
             }
         
             else if (isRight == true){
-                drawCharacterRight(this.x, this.y);
+                if (char == 'white'){
+                    drawCharacterRight(this.x, this.y);
+                }
+                if (char == 'black'){
+                    drawDarkRight(this.x, this.y);
+                }
             }
         
             else if (isLeft == true){
-                drawCharacterLeft(this.x, this.y);
+                if (char == 'white'){
+                    drawCharacterLeft(this.x, this.y);
+                }
+                if (char == 'black'){
+                    drawDarkLeft(this.x, this.y);
+                }
             }
         
             else{
-                drawCharacterForward(this.x, this.y);
+                if (char == 'white'){
+                    drawCharacterForward(this.x, this.y);
+                }
+                if (char == 'black'){
+                    drawDarkForward(this.x, this.y);
+                }
             }
         }
         
         if (gameLevel == 2){
             jumpStrength = -7.5;
             if (isJumping == true){
-                drawLevelTwoJump(this.x, this.y);
+                if (char == 'white'){
+                    drawLevelTwoJump(this.x, this.y);
+                }
+                if (char == 'black'){
+                    drawLevelTwoDarkJump(this.x, this.y);
+                }
             }
         
             else if (isRight == true){
-                drawLevelTwoRight(this.x, this.y);
+                if (char == 'white'){
+                    drawLevelTwoRight(this.x, this.y);
+                }
+                if (char == 'black'){
+                    drawLevelTwoDarkRight(this.x, this.y);
+                }
             }
         
             else if (isLeft == true){
-                drawLevelTwoLeft(this.x, this.y);
+                if (char == 'white'){
+                    drawLevelTwoLeft(this.x, this.y);
+                }
+                if (char == 'black'){
+                    drawLevelTwoDarkLeft(this.x, this.y);
+                }
             }
         
             else{
-                drawLevelTwoForward(this.x, this.y);
+                if (char == 'white'){
+                    drawLevelTwoForward(this.x, this.y);
+                }
+                if (char == 'black'){
+                    drawLevelTwoDarkForward(this.x, this.y);
+                }
             }
         }
 
         if (gameLevel == 3){
             jumpStrength = -10;
             if (isJumping == true){
-                drawLevelThreeJump(this.x, this.y);
+                if (char == 'white'){
+                    drawLevelThreeJump(this.x, this.y);
+                }
+                if (char == 'black'){
+                    drawLevelThreeDarkJump(this.x, this.y);
+                }
             }
         
             else if (isRight == true){
-                drawLevelThreeRight(this.x, this.y);
+                if (char == 'white'){
+                    drawLevelThreeRight(this.x, this.y);
+                }
+                if (char == 'black'){
+                    drawLevelThreeDarkRight(this.x, this.y);
+                }
             }
         
             else if (isLeft == true){
-                drawLevelThreeLeft(this.x, this.y);
+                if (char == 'white'){
+                    drawLevelThreeLeft(this.x, this.y);
+                }
+                if (char == 'black'){
+                    drawLevelThreeDarkLeft(this.x, this.y);
+                }
             }
         
             else{
-                drawLevelThreeForward(this.x, this.y);
+                if (char == 'white'){
+                    drawLevelThreeForward(this.x, this.y);
+                }
+                if (char == 'black'){
+                    drawLevelThreeDarkForward(this.x, this.y);
+                }
             }
         }
     }
