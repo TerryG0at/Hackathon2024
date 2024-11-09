@@ -159,3 +159,97 @@ function drawRain() {
     }
   }
 }
+
+
+
+function checkBeer(beer, gc_x, gc_y)
+{
+    if(beer.isFound == false)
+    {
+      if(gc_x+30 > beer.x && gc_x-30 < beer.x + 28)
+        {
+            if (gc_y > beer.y && gc_y-90 < beer.y+36)
+            {
+                beer.isFound = true;
+                if (currentFG <= 15) {
+                  currentFG = 0;
+                }
+                else {
+                  currentFG -= 15;
+                }
+            }
+        }
+     
+    }
+}
+
+function drawBeerFall(object_Beer)
+{
+
+    if(object_Beer.isFound == false)
+    {
+        
+        if (frameCount > object_Beer.delay) {
+          fill(205);
+          rect(object_Beer.x, object_Beer.y, 20,36);
+          fill(234,162,33);
+          rect(object_Beer.x+2, object_Beer.y+10, 16, 22)
+          fill(205);
+          rect(object_Beer.x+20, object_Beer.y+12, 8,2);
+          fill(205);
+          rect(object_Beer.x+26, object_Beer.y+14, 2,16);
+          fill(205);
+          rect(object_Beer.x+20, object_Beer.y+30, 8,2);
+    
+          // Make the food fall downwards
+          object_Beer.y += 0.8;
+        }
+      
+    }
+}
+
+function checkBurger(burger, gc_x, gc_y)
+{
+    if(burger.isFound == false)
+    {
+      if(gc_x+30 > burger.x && gc_x-30 < burger.x + 28)
+        {
+            if (gc_y > burger.y && gc_y-90 < burger.y+36)
+            {
+                burger.isFound = true;
+                if (currentFG <= 15) {
+                  currentFG = 0;
+                }
+                else {
+                  currentFG -= 15;
+                }
+            }
+        }
+     
+    }
+}
+
+function drawBurgerFall(object_Burger)
+{
+
+    if(object_Burger.isFound == false)
+    {
+        
+        if (frameCount > object_Burger.delay) {
+          fill(229,203,122)
+          ellipse(object_Burger.x+10, object_Burger.y,20,12)
+          fill(229,203,122)
+          ellipse(object_Burger.x+10, object_Burger.y+8,20,12)
+          fill(50,199,4);
+          rect(object_Burger.x, object_Burger.y, 20,2);
+          fill(236,53,33);
+          rect(object_Burger.x, object_Burger.y+2, 20,2);
+          fill(69,1,1);
+          rect(object_Burger.x, object_Burger.y+4, 20,4);
+    
+          // Make the food fall downwards
+          object_Burger.y += 0.8;
+        }
+      
+    }
+}

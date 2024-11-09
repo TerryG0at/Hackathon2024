@@ -4,6 +4,10 @@ let jumpStrength = -5;  // How strong the jump is
 let isJumping = false;  // Whether the player is in the air
 let floorPos_y;
 
+//food
+var beers = [];
+var burgers = [];
+
 //unlock Characters
 let loopwon = 0;
 let char = "white"
@@ -50,6 +54,14 @@ function setup() {
           length: random(10, 20)   // Random length for each raindrop
         });
       }
+
+    for (var i = 0; i < 100; i++) {
+    beers.push({ x: random(width), y: 0, delay: i * random(230,260), isFound: false });
+    }
+    
+    for (var i = 0; i < 100; i++) {
+    burgers.push({ x: random(width), y: 0, delay: i * random(190,220), isFound: false });
+    }
 }
 
 function draw() {
@@ -60,14 +72,26 @@ function draw() {
 
     else if (gameLevel == 1){
         drawSky(1);
-        drawGround(1);
+        
         drawStars();
 
         moon = {x: 150,y: 120,size: 40};
         drawMoon();
 
         drawClouds();
+        for(var i = 0; i < beers.length; i++)
+            {
+                checkBeer(beers[i], player.x, player.y);
+                drawBeerFall(beers[i]);
+            }  
+        
+        for(var i = 0; i < burgers.length; i++)
+            {
+                checkBurger(burgers[i], player.x, player.y);
+                drawBurgerFall(burgers[i]);
+            }
 
+        drawGround(1);
         // Fat Gauge Text
         fill(255);
         textSize(16);
@@ -92,9 +116,22 @@ function draw() {
     }
     else if (gameLevel == 2){
         drawSky(2);
-        drawGround(2);
 
         drawSnows();
+
+        for(var i = 0; i < beers.length; i++)
+            {
+                checkBeer(beers[i], player.x, player.y);
+                drawBeerFall(beers[i]);
+            }  
+        
+        for(var i = 0; i < burgers.length; i++)
+            {
+                checkBurger(burgers[i], player.x, player.y);
+                drawBurgerFall(burgers[i]);
+            }
+
+        drawGround(2);
         // Fat Gauge Text
         fill(255);
         textSize(16);
@@ -124,6 +161,18 @@ function draw() {
 
         drawRain();
 
+        for(var i = 0; i < beers.length; i++)
+            {
+                checkBeer(beers[i], player.x, player.y);
+                drawBeerFall(beers[i]);
+            }  
+        
+        for(var i = 0; i < burgers.length; i++)
+            {
+                checkBurger(burgers[i], player.x, player.y);
+                drawBurgerFall(burgers[i]);
+            }
+
         for (let i = 0; i < raindropCount; i++) {
             raindrops.push({
               x: random(width),        // Random x position
@@ -131,7 +180,8 @@ function draw() {
               speed: random(4, 10),    // Random falling speed for each raindrop
               length: random(10, 20)   // Random length for each raindrop
             });
-
+        
+        drawGround(3);
         // Fat Gauge Text
         fill(255);
         textSize(16);
