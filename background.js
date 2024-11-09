@@ -1,11 +1,40 @@
-function drawSky() {
-  background(25, 25, 25); //fill the sky blue
+function drawSky(level) {
+  
+  //Level 1
+  if (level == 1){
+    background(30);
+  }
+
+  // Level 2
+  else if (level == 2){
+    background(65, 125, 255);
+  }
+
+  // Level 3
+  else {
+    background(95, 155, 255);
+  }
 }
 
-function drawGround() {
+function drawGround(level) {
   noStroke();
-  fill(0, 155, 0);
-  rect(0, floorPos_y, width, height - floorPos_y); //draw some green ground
+  //Level 1
+  if (level == 1){
+    fill(0, 85, 0);
+    rect(0, floorPos_y, width, height - floorPos_y); //draw ground
+  }
+
+  // Level 2
+  else if (level == 2){
+    fill(205);
+    rect(0, floorPos_y, width, height - floorPos_y); //draw ground
+  }
+
+  // Level 3
+  else {
+    fill(55, 185, 5);
+    rect(0, floorPos_y, width, height - floorPos_y); //draw ground
+  }
 }
 
 function drawClouds()
@@ -101,4 +130,32 @@ function drawStars() {
       fill(255);
       ellipse(Math.random() * 1200,Math.random() * 300, 2, 2)
     }
+}
+
+// For Level 2
+function drawSnows(){
+  for (var i = 0; i < 50; i++) 
+    {
+      // snow
+      fill(255);
+      ellipse(Math.random() * 1200,Math.random() * 400, 5, 5)
+    }
+}
+
+function drawRain() {
+  stroke(255);
+
+  for (let i = 0; i < raindropCount; i++) {
+    // Draw each raindrop as a line
+    line(raindrops[i].x, raindrops[i].y, raindrops[i].x, raindrops[i].y + raindrops[i].length);
+    
+    // Move raindrop down by its speed
+    raindrops[i].y += raindrops[i].speed;
+    
+    // Reset raindrop to top when it falls below the screen
+    if (raindrops[i].y > height) {
+      raindrops[i].y = random(-100, 0); // Reset above the screen for smoother effect
+      raindrops[i].x = random(width);   // New random x position
+    }
+  }
 }
