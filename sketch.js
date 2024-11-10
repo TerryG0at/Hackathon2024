@@ -96,7 +96,7 @@ function draw() {
         fill(255);
         textSize(16);
         textAlign(CENTER, CENTER);
-        text('Fat %', 51, 20);
+        text('Fitness %', 51, 20);
 
 
         //outline for fat gauge bar
@@ -136,7 +136,7 @@ function draw() {
         fill(255);
         textSize(16);
         textAlign(CENTER, CENTER);
-        text('Fat %', 51, 20);
+        text('Fitness %', 51, 20);
 
 
         //outline for fat gauge bar
@@ -186,7 +186,7 @@ function draw() {
         fill(255);
         textSize(16);
         textAlign(CENTER, CENTER);
-        text('Fat %', 51, 20);
+        text('Fitness %', 51, 20);
 
         
         //outline for fat gauge bar
@@ -302,6 +302,7 @@ class Player {
 
     show() {
         if (gameLevel == 1){
+            jumpStrength = -5;
             if (isJumping == true){
                 if (char == 'white'){
                     drawCharacterJump(this.x, this.y);

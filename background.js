@@ -188,7 +188,7 @@ function drawBeerFall(object_Beer)
 
     if(object_Beer.isFound == false)
     {
-        
+        noStroke()
         if (frameCount > object_Beer.delay) {
           fill(205);
           rect(object_Beer.x, object_Beer.y, 20,36);
@@ -234,7 +234,7 @@ function drawBurgerFall(object_Burger)
 
     if(object_Burger.isFound == false)
     {
-        
+        noStroke();
         if (frameCount > object_Burger.delay) {
           fill(229,203,122)
           ellipse(object_Burger.x+10, object_Burger.y,20,12)
